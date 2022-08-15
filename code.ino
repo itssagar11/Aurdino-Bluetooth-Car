@@ -8,7 +8,7 @@ AF_DCMotor motor2(2, MOTOR12_1KHZ);
 AF_DCMotor motor3(3, MOTOR34_1KHZ);
 AF_DCMotor motor4(4, MOTOR34_1KHZ);
 
-char command; 
+//char command; 
 
 void setup() 
 {       
@@ -16,24 +16,24 @@ void setup()
 }
 
 void loop(){
-  if(Serial.available() > 0){ 
-    command = Serial.read(); 
-    Stop(); //initialize with motors stoped
+  if(Serial.available()){             //If Serial.available() returns any value greater than 0, control enters the while loop.
+    //command = Serial.read(); 
+    Stop(); //initialize with motors stopped
     //Change pin mode only if new command is different from previous.   
     //Serial.println(command);
-    switch(command){
-    case 'F':  
-      forward();
-      break;
-    case 'B':  
-       back();
-      break;
-    case 'L':  
-      left();
-      break;
-    case 'R':
-      right();
-      break;
+    switch(Serial.read()){
+      case 'F':  
+        forward();
+        break;
+      case 'B':  
+         back();
+        break;
+      case 'L':  
+        left();
+        break;
+      case 'R':
+        right();
+        break;
     }
   } 
 }
